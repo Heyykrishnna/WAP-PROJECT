@@ -1,5 +1,11 @@
 # Life OS – Personal Intelligence Dashboard
 
+---
+
+## Inspo Ui: https://dribbble.com/shots/26884101-Digital-Memories-Mobile-App-1-1-AI-powered
+
+---
+
 ## Overview
 
 Life OS is a smart, AI-powered personal dashboard that transforms scattered data into **actionable life decisions**.
