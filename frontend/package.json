@@ -10,11 +10,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@next-tools/dynamic": "^0.0.11",
     "@react-three/drei": "^10.7.7",
     "@react-three/fiber": "^10.0.0-alpha.2",
     "@tailwindcss/vite": "^4.2.2",
     "gsap": "^3.14.2",
     "lenis": "^1.3.21",
+    "motion": "^12.38.0",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
     "react-router-dom": "^7.13.2",

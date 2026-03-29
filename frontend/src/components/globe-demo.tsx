@@ -1,24 +1,21 @@
 "use client";
-import React from "react";
+import { lazy, Suspense } from "react";
 import { motion } from "motion/react";
-import dynamic from "next/dynamic";
 
-const World = dynamic(() => import("@/components/ui/globe").then((m) => m.World), {
-  ssr: false,
-});
+const World = lazy(() => import("@/components/ui/globe").then((m) => ({ default: m.World })));
 
 export default function GlobeDemo() {
   const globeConfig = {
     pointSize: 4,
-    globeColor: "#062056",
+    globeColor: "#1c1917",
     showAtmosphere: true,
     atmosphereColor: "#FFFFFF",
     atmosphereAltitude: 0.1,
-    emissive: "#062056",
+    emissive: "#1c1917",
     emissiveIntensity: 0.1,
     shininess: 0.9,
     polygonColor: "rgba(255,255,255,0.7)",
-    ambientLight: "#38bdf8",
+    ambientLight: "#a8a29e",
     directionalLeftLight: "#ffffff",
     directionalTopLight: "#ffffff",
     pointLight: "#ffffff",
@@ -30,7 +27,7 @@ export default function GlobeDemo() {
     autoRotate: true,
     autoRotateSpeed: 0.5,
   };
-  const colors = ["#06b6d4", "#3b82f6", "#6366f1"];
+  const colors = ["#a8a29e", "#57534e", "#292524"];
   const sampleArcs = [
     {
       order: 1,
@@ -395,8 +392,8 @@ export default function GlobeDemo() {
   ];
 
   return (
-    <div className="flex flex-row items-center justify-center py-20 h-screen md:h-auto dark:bg-black bg-white relative w-full">
-      <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-[40rem] px-4">
+    <div className="flex flex-row items-center justify-center py-20 h-screen md:h-auto bg-[#f5f4f0] relative w-full">
+      <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-160 px-4">
         <motion.div
           initial={{
             opacity: 0,
@@ -409,19 +406,23 @@ export default function GlobeDemo() {
           transition={{
             duration: 1,
           }}
-          className="div"
+          className="div relative z-20"
         >
-          <h2 className="text-center text-xl md:text-4xl font-bold text-black dark:text-white">
-            We sell soap worldwide
+          <h2 
+            style={{ fontFamily: "'Doto', monospace" }}
+            className="text-center text-3xl md:text-5xl font-bold text-stone-900"
+          >
+            REAL-TIME GLOBAL CONTEXT
           </h2>
-          <p className="text-center text-base md:text-lg font-normal text-neutral-700 dark:text-neutral-200 max-w-md mt-2 mx-auto">
-            This globe is interactive and customizable. Have fun with it, and
-            don&apos;t forget to share it. :)
+          <p className="text-center text-[14px] leading-[1.8] text-stone-500 max-w-lg mt-4 mx-auto">
+            Life OS continuously aggregates data from worldwide sources—weather patterns, global events, and regional trends—to provide you with unparalleled contextual awareness.
           </p>
         </motion.div>
-        <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-gradient-to-b pointer-events-none select-none from-transparent dark:to-black to-white z-40" />
+        <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-linear-to-b pointer-events-none select-none from-transparent to-[#f5f4f0] z-40" />
         <div className="absolute w-full -bottom-20 h-72 md:h-full z-10">
-          <World data={sampleArcs} globeConfig={globeConfig} />
+          <Suspense fallback={<div className="flex items-center justify-center h-full w-full text-stone-400">Loading Globe...</div>}>
+            <World data={sampleArcs} globeConfig={globeConfig} />
+          </Suspense>
         </div>
       </div>
     </div>

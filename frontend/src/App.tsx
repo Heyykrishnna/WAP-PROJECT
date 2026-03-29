@@ -11,12 +11,14 @@ import APIDetailPage from './pages/APIDetailPage';
 import IntelligencePage from './pages/IntelligencePage';
 import DocsPage from './pages/DocsPage';
 import YourLifePage from './pages/YourLifePage';
+import GlobeDemo from './components/globe-demo';
 
 const LandingLayout: React.FC = () => {
   return (
     <>
       <Hero />
       <APIModules />
+      <GlobeDemo />
     </>
   );
 };
