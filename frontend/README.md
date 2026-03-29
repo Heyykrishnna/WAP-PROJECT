@@ -39,20 +39,10 @@ This project integrates multiple APIs from different domains to create a unified
 - Provides real-time weather data
 - Used to suggest optimal activities and routines
 
-### Geolocation API
-
-- Detects user location
-- Personalizes all recommendations
-
 ### News API
 
 - Fetches relevant news
 - Filters based on user context and location
-
-### Text Analysis / NLP API
-
-- Analyzes user input (notes, journal)
-- Detects mood, stress, and patterns
 
 ### Calendar API
 
@@ -167,9 +157,12 @@ npm install
 Create a `.env` file in the root:
 
 ```
-WEATHER_API_KEY=your_key
-NEWS_API_KEY=your_key
-GEO_API_KEY=your_key
+VITE_WEATHERSTACK_API_KEY=YOUR_KEY
+VITE_GNEWS_API_KEY=YOUR_KEY
+VITE_CHECKIDAY_API_KEY=YOUR_KEY
+VITE_SPOONACULAR_API_KEY=YOUR_KEY
+VITE_WGER_API_KEY=YOUR_KEY
+VITE_TOMTOM_API_KEY=YOUR_KEY
 ```
 
 ---

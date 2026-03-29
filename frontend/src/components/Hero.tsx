@@ -1,19 +1,35 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import gsap from 'gsap';
+import { fetchWeather, type WeatherData } from '../services/weatherService';
+import { getUserLocation } from '../services/locationService';
 
-const apiList = ['Weather', 'Geolocation', 'News', 'NLP', 'Calendar', 'Fitness', 'Food', 'Transport'];
 
 const Hero: React.FC = () => {
   const headingRef = useRef<HTMLHeadingElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
   const btnsRef = useRef<HTMLDivElement>(null);
+  const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
+  const [isLoadingWeather, setIsLoadingWeather] = useState(true);
 
   useEffect(() => {
     const tl = gsap.timeline();
     tl.fromTo(headingRef.current, { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.9, ease: 'power4.out' })
       .fromTo(subRef.current, { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.7, ease: 'power3.out' }, '-=0.5')
       .fromTo(btnsRef.current, { opacity: 0, y: 12 }, { opacity: 1, y: 0, duration: 0.6, ease: 'power3.out' }, '-=0.4');
+
+    const getLocalWeather = async () => {
+      try {
+        const coords = await getUserLocation();
+        const weather = await fetchWeather(coords.lat, coords.lon);
+        setWeatherData(weather);
+      } catch (err) {
+        console.error('Failed to fetch weather:', err);
+      } finally {
+        setIsLoadingWeather(false);
+      }
+    };
+    getLocalWeather();
   }, []);
 
   return (
@@ -53,8 +69,22 @@ const Hero: React.FC = () => {
             <div className="flex gap-4">
               <div className="flex-1 bg-white border border-stone-200 rounded-2xl p-7">
                 <p className="text-[10px] font-semibold tracking-widest uppercase text-stone-400 mb-5">Weather Context</p>
-                <p style={{ fontFamily: "'Doto', monospace" }} className="text-[48px] font-bold text-stone-900 mb-1 leading-none">24°C</p>
-                <p className="text-[13px] text-stone-400 leading-relaxed mt-3">Ideal for a morning run.<br />Peak focus window: 8–11 AM.</p>
+                <p style={{ fontFamily: "'Doto', monospace" }} className="text-[48px] font-bold text-stone-900 mb-1 leading-none">
+                  {isLoadingWeather ? '--°C' : weatherData ? `${weatherData.temp}°C` : '24°C'}
+                </p>
+                <p className="text-[13px] text-stone-400 leading-relaxed mt-3">
+                  {isLoadingWeather ? (
+                    <>Loading local weather...<br />Peak focus window: 8–11 AM.</>
+                  ) : weatherData ? (
+                    <>
+                      {weatherData.description.charAt(0).toUpperCase() + weatherData.description.slice(1)} in {weatherData.city}.<br />
+                      {weatherData.temp < 20 ? 'Ideal for a sweater. ' : weatherData.temp > 33 ? 'Stay hydrated. ' : 'Ideal for a morning run. '}
+                      Peak focus window: 8–11 AM.
+                    </>
+                  ) : (
+                    <>Ideal for a morning run.<br />Peak focus window: 8–11 AM.</>
+                  )}
+                </p>
               </div>
               <div className="flex-1 bg-white border border-stone-200 rounded-2xl p-7">
                 <p className="text-[10px] font-semibold tracking-widest uppercase text-stone-400 mb-5">Mood Analysis</p>
@@ -85,13 +115,6 @@ const Hero: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
-
-        <div className="mt-14 pt-7 border-t border-stone-200 flex items-center gap-10 flex-wrap">
-          <span className="text-[10px] font-semibold tracking-widest uppercase text-stone-400">APIs Connected</span>
-          {apiList.map((api) => (
-            <span key={api} className="text-[13px] font-medium text-stone-400">{api}</span>
-          ))}
         </div>
       </div>
     </section>
