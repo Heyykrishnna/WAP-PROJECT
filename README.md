@@ -33,20 +33,10 @@ This project integrates multiple APIs from different domains to create a unified
 * Provides real-time weather data
 * Used to suggest optimal activities and routines
 
-### Geolocation API
-
-* Detects user location
-* Personalizes all recommendations
-
 ### News API
 
 * Fetches relevant news
 * Filters based on user context and location
-
-### Text Analysis / NLP API
-
-* Analyzes user input (notes, journal)
-* Detects mood, stress, and patterns
 
 ### Calendar API
 
@@ -132,8 +122,8 @@ Returns:
 
 ### Frontend
 
-* React.js / JavaScript / TypeScript / Nexr.js
-* Tailwind CSS / Framer / GSAP
+* React.js / JavaScript / TypeScript / Next.js
+* Tailwind CSS / Framer / GSAP / Motion
 
 ### APIs & Services
 
