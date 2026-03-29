@@ -40,7 +40,7 @@ const APIsPage: React.FC = () => {
                   <span className="text-[11px] font-mono text-stone-300 w-6">
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <span className="text-[10px] font-semibold tracking-[0.1em] uppercase text-stone-400 w-32">{api.category}</span>
+                  <span className="text-[10px] font-semibold tracking-widest uppercase text-stone-400 w-32">{api.category}</span>
                   <h3 className="text-[15px] font-semibold text-stone-900">{api.name}</h3>
                 </div>
                 <div className="flex items-center gap-6">

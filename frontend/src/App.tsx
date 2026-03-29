@@ -10,6 +10,7 @@ import APIsPage from './pages/APIsPage';
 import APIDetailPage from './pages/APIDetailPage';
 import IntelligencePage from './pages/IntelligencePage';
 import DocsPage from './pages/DocsPage';
+import YourLifePage from './pages/YourLifePage';
 
 const LandingLayout: React.FC = () => {
   return (
@@ -46,6 +47,7 @@ const App: React.FC = () => {
             <Route path="/apis/:slug" element={<APIDetailPage />} />
             <Route path="/intelligence" element={<IntelligencePage />} />
             <Route path="/docs" element={<DocsPage />} />
+            <Route path="/your-life" element={<YourLifePage />} />
           </Routes>
         </main>
         <Footer />

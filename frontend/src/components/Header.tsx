@@ -3,6 +3,7 @@ import { Link, useLocation } from 'react-router-dom';
 
 const navLinks = [
   { label: 'Overview', to: '/' },
+  { label: 'Your Life', to: '/your-life' },
   { label: 'APIs', to: '/apis' },
   { label: 'Intelligence', to: '/intelligence' },
   { label: 'Docs', to: '/docs' },
@@ -37,10 +38,10 @@ const Header: React.FC = () => {
         </nav>
 
         <Link
-          to="/apis"
+          to="/your-life"
           className="text-[13px] font-semibold bg-stone-900 text-white px-5 py-2.5 rounded-full hover:bg-stone-700 transition-colors duration-200"
         >
-          Get Started
+          Check My Life
         </Link>
       </div>
     </header>
