@@ -15,37 +15,39 @@ const apis = [
 const APIsPage: React.FC = () => {
   return (
     <div className="flex-1">
-      <section className="pt-16 pb-10 border-b border-stone-200">
-        <div className="max-w-6xl mx-auto px-8">
+      <section className="pt-10 md:pt-16 pb-8 md:pb-10 border-b border-stone-200">
+        <div className="max-w-6xl mx-auto px-6 md:px-8">
           <span className="text-[10px] font-semibold tracking-[0.12em] uppercase text-stone-400">All APIs</span>
-          <h1 style={{ fontFamily: "'Doto', monospace" }} className="text-[52px] font-bold text-stone-900 mt-3 mb-4">
-            INTELLIGENCE<br />MODULES
+          <h1 style={{ fontFamily: "'Doto', monospace" }} className="text-[32px] sm:text-[42px] md:text-[52px] font-bold text-stone-900 mt-3 mb-4 leading-tight">
+            INTELLIGENCE<br className="hidden sm:block" /> MODULES
           </h1>
-          <p className="text-[14px] text-stone-400 max-w-lg leading-relaxed">
+          <p className="text-[13px] md:text-[14px] text-stone-400 max-w-lg leading-relaxed">
             Life OS integrates eight data domains into a single intelligence layer. Click any module to explore its data model, endpoints, and live output.
           </p>
         </div>
       </section>
 
-      <section className="py-14">
-        <div className="max-w-6xl mx-auto px-8">
-          <div className="flex flex-col gap-3">
+      <section className="py-10 md:py-14">
+        <div className="max-w-6xl mx-auto px-6 md:px-8">
+          <div className="flex flex-col gap-3 md:gap-4">
             {apis.map((api, i) => (
               <Link
                 key={api.slug}
                 to={`/apis/${api.slug}`}
-                className="flex items-center justify-between bg-white border border-stone-200 rounded-2xl px-8 py-6 hover:border-stone-400 hover:shadow-sm transition-all duration-200 group"
+                className="flex flex-col md:flex-row md:items-center justify-between bg-white border border-stone-200 rounded-2xl p-6 md:px-8 md:py-6 hover:border-stone-400 hover:shadow-sm transition-all duration-200 group gap-4 md:gap-8"
               >
-                <div className="flex items-center gap-8">
-                  <span className="text-[11px] font-mono text-stone-300 w-6">
+                <div className="flex items-center gap-4 md:gap-8">
+                  <span className="text-[10px] md:text-[11px] font-mono text-stone-300 w-6">
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <span className="text-[10px] font-semibold tracking-widest uppercase text-stone-400 w-32">{api.category}</span>
-                  <h3 className="text-[15px] font-semibold text-stone-900">{api.name}</h3>
+                  <div className="flex flex-col md:flex-row md:items-center gap-1 md:gap-8">
+                    <span className="text-[9px] md:text-[10px] font-semibold tracking-widest uppercase text-stone-400 md:w-32">{api.category}</span>
+                    <h3 className="text-[14px] md:text-[15px] font-semibold text-stone-900">{api.name}</h3>
+                  </div>
                 </div>
-                <div className="flex items-center gap-6">
-                  <p className="text-[13px] text-stone-400 max-w-[300px] text-right hidden lg:block">{api.desc}</p>
-                  <span className={`text-[10px] font-semibold tracking-[0.08em] uppercase px-3 py-1 rounded-full border ${api.status === 'Active' ? 'border-stone-200 text-stone-500 bg-stone-50' : 'border-amber-200 text-amber-600 bg-amber-50'}`}>
+                <div className="flex items-center justify-between md:justify-end gap-6 border-t border-stone-100 md:border-none pt-4 md:pt-0">
+                  <p className="text-[12px] md:text-[13px] text-stone-400 max-w-[300px] text-right hidden lg:block">{api.desc}</p>
+                  <span className={`text-[9px] md:text-[10px] font-semibold tracking-[0.08em] uppercase px-3 py-1 rounded-full border ${api.status === 'Active' ? 'border-stone-200 text-stone-500 bg-stone-50' : 'border-amber-200 text-amber-600 bg-amber-50'}`}>
                     {api.status}
                   </span>
                   <span className="text-stone-300 group-hover:text-stone-700 transition-colors">→</span>

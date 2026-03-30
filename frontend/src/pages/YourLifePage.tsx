@@ -124,8 +124,8 @@ const YourLifePage: React.FC = () => {
 
   return (
     <div className="flex-1 flex flex-col">
-      <div className="max-w-2xl mx-auto w-full px-8 pt-16 pb-32 flex-1">
-        <div className="flex items-center justify-between mb-12">
+      <div className="max-w-2xl mx-auto w-full px-6 md:px-8 pt-10 md:pt-16 pb-20 md:pb-32 flex-1">
+        <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10 md:mb-12">
           <span className="text-[10px] font-semibold tracking-widest uppercase text-stone-400">
             Your Life — Step {step + 1} of {TOTAL_STEPS}
           </span>
@@ -157,12 +157,12 @@ const YourLifePage: React.FC = () => {
                   <label className="text-[11px] font-semibold tracking-widest uppercase text-stone-400 block mb-3">
                     How are you feeling? — <span className="text-stone-600 normal-case">{feelingLabels[answers.feeling]}</span>
                   </label>
-                  <div className="flex gap-3">
+                  <div className="grid grid-cols-2 sm:flex gap-2 sm:gap-3">
                     {feelingLabels.map((label, i) => (
                       <button
                         key={i}
                         onClick={() => setAnswers(a => ({ ...a, feeling: i }))}
-                        className={`flex-1 py-3 rounded-xl border text-[12px] font-medium transition-all duration-200 ${answers.feeling === i ? 'bg-stone-900 text-white border-stone-900' : 'bg-white border-stone-200 text-stone-500 hover:border-stone-400'}`}
+                        className={`py-3 rounded-xl border text-[11px] md:text-[12px] font-medium transition-all duration-200 ${answers.feeling === i ? 'bg-stone-900 text-white border-stone-900' : 'bg-white border-stone-200 text-stone-500 hover:border-stone-400'} ${i === feelingLabels.length - 1 ? 'col-span-2 sm:flex-1' : 'flex-1'}`}
                       >
                         {label}
                       </button>
@@ -192,12 +192,12 @@ const YourLifePage: React.FC = () => {
                   <label className="text-[11px] font-semibold tracking-widest uppercase text-stone-400 block mb-3">
                     Energy level — <span className="text-stone-600 normal-case">{energyLabels[answers.energyLevel]}</span>
                   </label>
-                  <div className="flex gap-3">
+                  <div className="grid grid-cols-2 sm:flex gap-2 sm:gap-3">
                     {energyLabels.map((label, i) => (
                       <button
                         key={i}
                         onClick={() => setAnswers(a => ({ ...a, energyLevel: i }))}
-                        className={`flex-1 py-3 rounded-xl border text-[11px] font-medium transition-all duration-200 ${answers.energyLevel === i ? 'bg-stone-900 text-white border-stone-900' : 'bg-white border-stone-200 text-stone-500 hover:border-stone-400'}`}
+                        className={`py-3 rounded-xl border text-[11px] font-medium transition-all duration-200 ${answers.energyLevel === i ? 'bg-stone-900 text-white border-stone-900' : 'bg-white border-stone-200 text-stone-500 hover:border-stone-400'} ${i === energyLabels.length - 1 ? 'col-span-2 sm:flex-1' : 'flex-1'}`}
                       >
                         {label}
                       </button>
@@ -303,26 +303,26 @@ const YourLifePage: React.FC = () => {
 };
 
 const StepCard: React.FC<{ heading: string; sub: string; children: React.ReactNode }> = ({ heading, sub, children }) => (
-  <div className="flex flex-col gap-8">
+  <div className="flex flex-col gap-6 md:gap-8">
     <div>
-      <h2 style={{ fontFamily: "'Doto', monospace" }} className="text-[34px] font-bold text-stone-900 leading-tight mb-3">
+      <h2 style={{ fontFamily: "'Doto', monospace" }} className="text-[26px] md:text-[34px] font-bold text-stone-900 leading-tight mb-3">
         {heading.toUpperCase()}
       </h2>
-      <p className="text-[14px] text-stone-400 leading-relaxed">{sub}</p>
+      <p className="text-[13px] md:text-[14px] text-stone-400 leading-relaxed">{sub}</p>
     </div>
     {children}
   </div>
 );
 
 const LoadingScreen: React.FC = () => (
-  <div className="flex-1 flex flex-col items-center justify-center gap-6 py-32">
+  <div className="flex-1 flex flex-col items-center justify-center gap-6 py-20 md:py-32 px-6">
     <div className="flex gap-2">
       {[0, 1, 2].map(i => (
         <div key={i} className="w-2 h-2 rounded-full bg-stone-400 animate-bounce" style={{ animationDelay: `${i * 0.15}s` }} />
       ))}
     </div>
-    <p style={{ fontFamily: "'Doto', monospace" }} className="text-[22px] font-bold text-stone-900">SYNCING 8 UNIFIED APIS...</p>
-    <p className="text-[13px] text-stone-400 max-w-sm text-center">Fetching Weather, Geolocation, News, NLP, Holiday Data, Food, Fitness, and Transport context.</p>
+    <p style={{ fontFamily: "'Doto', monospace" }} className="text-[18px] md:text-[22px] font-bold text-stone-900 text-center">SYNCING 8 UNIFIED APIS...</p>
+    <p className="text-[12px] md:text-[13px] text-stone-400 max-w-sm text-center">Fetching Weather, Geolocation, News, NLP, Holiday Data, Food, Fitness, and Transport context.</p>
   </div>
 );
 
@@ -338,56 +338,55 @@ const Dashboard: React.FC<{
 
   return (
     <div className="flex-1 pb-20">
-      <section className="pt-12 pb-10 border-b border-stone-200">
-        <div className="max-w-6xl mx-auto px-8">
+      <section className="pt-8 md:pt-12 pb-8 md:pb-10 border-b border-stone-200">
+        <div className="max-w-6xl mx-auto px-6 md:px-8">
           <span className="text-[10px] font-semibold tracking-widest uppercase text-stone-400">Your Life — 8-Point Intelligence</span>
-          <h1 style={{ fontFamily: "'Doto', monospace" }} className="text-[48px] font-bold text-stone-900 mt-2 leading-tight">
+          <h1 style={{ fontFamily: "'Doto', monospace" }} className="text-[32px] md:text-[48px] font-bold text-stone-900 mt-2 leading-tight">
             {answers.name ? `GOOD DAY, ${answers.name.toUpperCase()}.` : 'YOUR LIFE REPORT.'}
           </h1>
-          <p className="text-[14px] text-stone-400 mt-3">
+          <p className="text-[13px] md:text-[14px] text-stone-400 mt-3 leading-relaxed">
             Synthesised from 8 APIs covering your location, weather, mood, holidays, and physiology.
           </p>
         </div>
       </section>
 
-      <section className="pt-12">
-        <div className="max-w-6xl mx-auto px-8 flex flex-col gap-8">
+      <section className="pt-8 md:pt-12">
+        <div className="max-w-6xl mx-auto px-6 md:px-8 flex flex-col gap-6 md:gap-8">
 
-          <div className="flex gap-6 flex-col md:flex-row">
-            <div className="flex-1 bg-white border border-stone-200 rounded-2xl p-8">
+          <div className="flex flex-col lg:flex-row gap-6">
+            <div className="flex-1 bg-white border border-stone-200 rounded-2xl p-6 md:p-8">
               <p className="text-[10px] font-semibold tracking-widest uppercase text-stone-400 mb-5">Smart Morning Brief</p>
               <div className="flex flex-col gap-4">
                 {weather && (
-                  <div className="flex items-start gap-4 pb-4 border-b border-stone-100">
-                    <span className="shrink-0 w-24 text-[12px] font-semibold text-stone-900">Weather API</span>
-                    <span className="text-[13px] text-stone-500 leading-relaxed">
+                  <div className="flex flex-col sm:flex-row items-start gap-1 sm:gap-4 pb-4 border-b border-stone-100">
+                    <span className="shrink-0 w-full sm:w-24 text-[11px] md:text-[12px] font-bold text-stone-900">Weather API</span>
+                    <span className="text-[12px] md:text-[13px] text-stone-500 leading-relaxed">
                       {weather.temp}°C in {weather.city}. {weather.description.charAt(0).toUpperCase() + weather.description.slice(1)}.
-                      {weather.temp < 20 ? ' Dress in layers.' : weather.temp > 33 ? ' Stay hydrated.' : ' Comfortable conditions.'}
                     </span>
                   </div>
                 )}
-                <div className="flex items-start gap-4 pb-4 border-b border-stone-100">
-                  <span className="shrink-0 w-24 text-[12px] font-semibold text-stone-900">National Holiday</span>
-                  <span className="text-[13px] text-stone-500 leading-relaxed">
+                <div className="flex flex-col sm:flex-row items-start gap-1 sm:gap-4 pb-4 border-b border-stone-100">
+                  <span className="shrink-0 w-full sm:w-24 text-[11px] md:text-[12px] font-bold text-stone-900">National Holiday</span>
+                  <span className="text-[12px] md:text-[13px] text-stone-500 leading-relaxed">
                     Today is {holiday.holidayName}. {holiday.suggestion}
                   </span>
                 </div>
-                <div className="flex items-start gap-4 pb-4 border-b border-stone-100">
-                  <span className="shrink-0 w-24 text-[12px] font-semibold text-stone-900">NLP API</span>
-                  <span className="text-[13px] text-stone-500 leading-relaxed">System detects prevailing {mood.label.toLowerCase()} subtext. {mood.suggestions[0]}</span>
+                <div className="flex flex-col sm:flex-row items-start gap-1 sm:gap-4 pb-4 border-b border-stone-100">
+                  <span className="shrink-0 w-full sm:w-24 text-[11px] md:text-[12px] font-bold text-stone-900">NLP API</span>
+                  <span className="text-[12px] md:text-[13px] text-stone-500 leading-relaxed">System detects prevailing {mood.label.toLowerCase()} subtext.</span>
                 </div>
-                <div className="flex items-start gap-4">
-                  <span className="shrink-0 w-24 text-[12px] font-semibold text-stone-900">Transport API</span>
-                  <span className="text-[13px] text-stone-500 leading-relaxed">{transport.recommendation} Traffic is currently {transport.trafficState.toLowerCase()}.</span>
+                <div className="flex flex-col sm:flex-row items-start gap-1 sm:gap-4">
+                  <span className="shrink-0 w-full sm:w-24 text-[11px] md:text-[12px] font-bold text-stone-900">Transport API</span>
+                  <span className="text-[12px] md:text-[13px] text-stone-500 leading-relaxed">{transport.recommendation}</span>
                 </div>
               </div>
             </div>
 
-            <div className="shrink-0 w-full md:w-[260px] bg-white border border-stone-200 rounded-2xl p-8 flex flex-col">
+            <div className="shrink-0 w-full lg:w-[260px] bg-white border border-stone-200 rounded-2xl p-6 md:p-8 flex flex-col">
               <p className="text-[10px] font-semibold tracking-widest uppercase text-stone-400 mb-6">Daily Life Score</p>
-              <div className="flex flex-col items-center justify-center flex-1 gap-2 mb-6">
-                <p style={{ fontFamily: "'Doto', monospace" }} className="text-[64px] font-bold text-stone-900 leading-none">{score.total}</p>
-                <p className="text-[11px] text-stone-400">out of 100</p>
+              <div className="flex flex-col items-center justify-center flex-1 gap-1 md:gap-2 mb-6">
+                <p style={{ fontFamily: "'Doto', monospace" }} className="text-[52px] md:text-[64px] font-bold text-stone-900 leading-none">{score.total}</p>
+                <p className="text-[10px] md:text-[11px] text-stone-400 uppercase tracking-widest">Life Score</p>
               </div>
               <div className="flex flex-col gap-3">
                 {[
@@ -396,7 +395,7 @@ const Dashboard: React.FC<{
                   { label: 'Consistency', val: score.consistency },
                 ].map(({ label, val }) => (
                   <div key={label}>
-                    <div className="flex justify-between text-[11px] mb-1">
+                    <div className="flex justify-between text-[10px] md:text-[11px] mb-1">
                       <span className="text-stone-500">{label}</span>
                       <span className="font-medium text-stone-700">{val}</span>
                     </div>
@@ -409,7 +408,7 @@ const Dashboard: React.FC<{
             </div>
           </div>
 
-          <div className="bg-white border border-stone-200 rounded-2xl p-8 flex flex-col items-center">
+          <div className="bg-white border border-stone-200 rounded-2xl p-6 md:p-8 flex flex-col items-center">
             <p className="text-[10px] font-semibold tracking-widest uppercase text-stone-400 mb-5 w-full text-left">Decision Engine</p>
             <div className="flex items-start gap-4 mb-6 w-full">
               <div className="flex-1 border border-stone-200 rounded-xl overflow-hidden flex bg-white outline-none focus-within:ring-2 focus-within:ring-stone-200 transition-shadow">
@@ -418,58 +417,58 @@ const Dashboard: React.FC<{
                   value={decisionInput}
                   onChange={e => setDecisionInput(e.target.value)}
                   onKeyDown={e => e.key === 'Enter' && onAsk()}
-                  placeholder={data.decisionAnswer ? 'Ask another question...' : (answers.question || 'Ask Life OS anything about your day...')}
-                  className="flex-1 text-[14px] px-5 py-3.5 focus:outline-none bg-transparent text-stone-900 placeholder-stone-300 border-none"
+                  placeholder={data.decisionAnswer ? 'Ask another question...' : (answers.question || 'Ask Life OS anything...')}
+                  className="flex-1 text-[13px] md:text-[14px] px-4 md:px-5 py-3 md:py-3.5 focus:outline-none bg-transparent text-stone-900 placeholder-stone-300 border-none"
                 />
                 <button
                   onClick={onAsk}
-                  className="px-6 text-[13px] font-semibold text-white bg-stone-900 hover:bg-stone-700 transition-colors"
+                  className="px-4 md:px-6 text-[12px] md:text-[13px] font-semibold text-white bg-stone-900 hover:bg-stone-700 transition-colors"
                 >
                   Ask →
                 </button>
               </div>
             </div>
-            <div className="bg-[#f5f4f0] rounded-xl p-6 w-full border border-stone-200">
-              <p className="text-[11px] font-semibold tracking-widest uppercase text-stone-400 mb-3">Life OS Answer</p>
-              <p className="text-[15px] text-stone-800 leading-relaxed font-medium">
+            <div className="bg-[#f5f4f0] rounded-xl p-5 md:p-6 w-full border border-stone-200">
+              <p className="text-[10px] md:text-[11px] font-semibold tracking-widest uppercase text-stone-400 mb-3">Life OS Answer</p>
+              <p className="text-[14px] md:text-[15px] text-stone-800 leading-relaxed font-medium">
                 {decisionAnswer || data.decisionAnswer}
               </p>
             </div>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-            <div className="bg-white border border-stone-200 rounded-2xl p-8 flex flex-col">
+            <div className="bg-white border border-stone-200 rounded-2xl p-6 md:p-8 flex flex-col">
               <p className="text-[10px] font-semibold tracking-widest uppercase text-stone-400 mb-5">Food / Core Body API</p>
-              <p className="text-[20px] font-bold text-stone-900 mb-4">{food.mealSuggestion}</p>
-              <p className="text-[13px] text-stone-500 leading-relaxed mb-4 flex-1">{food.hydrationStatus}</p>
-              <p className="text-[11px] font-medium text-stone-400 bg-[#f5f4f0] px-3 py-1.5 rounded-md w-fit">{food.timing}</p>
+              <p className="text-[18px] md:text-[20px] font-bold text-stone-900 mb-4">{food.mealSuggestion}</p>
+              <p className="text-[12px] md:text-[13px] text-stone-500 leading-relaxed mb-4 flex-1">{food.hydrationStatus}</p>
+              <p className="text-[10px] md:text-[11px] font-medium text-stone-400 bg-[#f5f4f0] px-3 py-1.5 rounded-md w-fit">{food.timing}</p>
             </div>
 
-            <div className="bg-white border border-stone-200 rounded-2xl p-8 flex flex-col">
+            <div className="bg-white border border-stone-200 rounded-2xl p-6 md:p-8 flex flex-col">
               <p className="text-[10px] font-semibold tracking-widest uppercase text-stone-400 mb-5">Fitness / Bio-Sync API</p>
               <div className="flex items-end gap-3 mb-4">
-                <p style={{ fontFamily: "'Doto', monospace" }} className="text-[54px] font-bold text-stone-900 leading-none">{fitness.recoveryScore}%</p>
-                <p className="text-[12px] text-stone-400 pb-2 border-b border-stone-200">Recovery Baseline</p>
+                <p style={{ fontFamily: "'Doto', monospace" }} className="text-[44px] md:text-[54px] font-bold text-stone-900 leading-none">{fitness.recoveryScore}%</p>
+                <p className="text-[11px] md:text-[12px] text-stone-400 pb-2 border-b border-stone-200">Recovery</p>
               </div>
-              <p className="text-[13px] text-stone-500 leading-relaxed mb-4 flex-1">{fitness.suggestion}</p>
-              <p className="text-[11px] font-medium text-stone-400 bg-[#f5f4f0] px-3 py-1.5 rounded-md w-fit">Optimal Window: {fitness.optimalWindow}</p>
+              <p className="text-[12px] md:text-[13px] text-stone-500 leading-relaxed mb-4 flex-1">{fitness.suggestion}</p>
+              <p className="text-[10px] md:text-[11px] font-medium text-stone-400 bg-[#f5f4f0] px-3 py-1.5 rounded-md w-fit">{fitness.optimalWindow}</p>
             </div>
 
-            <div className="bg-white border border-stone-200 rounded-2xl p-8 flex flex-col relative overflow-hidden">
+            <div className="bg-white border border-stone-200 rounded-2xl p-6 md:p-8 flex flex-col relative overflow-hidden">
               <div className="absolute -right-4 -top-4 w-24 h-24 bg-[#f5f4f0] rounded-full blur-2xl opacity-60" />
               <div className="flex justify-between items-center mb-5 relative z-10">
                 <p className="text-[10px] font-semibold tracking-widest uppercase text-stone-400">Life Alerts API</p>
-                {alerts.length > 0 && <span className="text-[10px] font-bold px-2 py-0.5 bg-red-100 text-red-600 rounded-full">{alerts.length} Warnings</span>}
+                {alerts.length > 0 && <span className="text-[10px] font-bold px-2 py-0.5 bg-red-100 text-red-600 rounded-full">{alerts.length}</span>}
               </div>
               
               {alerts.length === 0 ? (
-                <p className="text-[14px] font-medium text-stone-500 mt-2 relative z-10">All systems green. No alerts today.</p>
+                <p className="text-[13px] md:text-[14px] font-medium text-stone-500 mt-2 relative z-10">All systems green.</p>
               ) : (
                 <div className="flex flex-col gap-3 relative z-10">
                   {alerts.map((alert, i) => (
                     <div key={i} className={`flex items-start gap-3 pb-3 ${i < alerts.length - 1 ? 'border-b border-stone-100' : ''}`}>
                       <div className="w-1.5 h-1.5 rounded-full bg-red-500 mt-1.5 shrink-0" />
-                      <p className="text-[13px] text-stone-600 leading-snug">{alert}</p>
+                      <p className="text-[12px] md:text-[13px] text-stone-600 leading-snug">{alert}</p>
                     </div>
                   ))}
                 </div>
@@ -478,14 +477,14 @@ const Dashboard: React.FC<{
           </div>
 
           {news.length > 0 && (
-            <div className="bg-white border border-stone-200 rounded-2xl p-8">
-              <p className="text-[10px] font-semibold tracking-widest uppercase text-stone-400 mb-6">Curated News API (Location & Context Synced)</p>
-              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="bg-white border border-stone-200 rounded-2xl p-6 md:p-8">
+              <p className="text-[10px] font-semibold tracking-widest uppercase text-stone-400 mb-6">Curated News API</p>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {news.slice(0, 3).map((article, i) => (
                   <a key={i} href={article.url} target="_blank" rel="noopener noreferrer" className="group flex flex-col gap-2">
-                    <p className="text-[14px] font-medium text-stone-900 group-hover:text-stone-600 transition-colors leading-relaxed line-clamp-3">{article.title}</p>
+                    <p className="text-[13px] md:text-[14px] font-medium text-stone-900 group-hover:text-stone-600 transition-colors leading-relaxed line-clamp-3">{article.title}</p>
                     <div className="flex items-center justify-between mt-auto pt-2">
-                       <p className="text-[11px] font-mono text-stone-400 uppercase tracking-widest truncate max-w-[120px]">{article.source}</p>
+                       <p className="text-[10px] md:text-[11px] font-mono text-stone-400 uppercase tracking-widest truncate max-w-[120px]">{article.source}</p>
                        <span className="text-[16px] text-stone-300 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all">→</span>
                     </div>
                   </a>

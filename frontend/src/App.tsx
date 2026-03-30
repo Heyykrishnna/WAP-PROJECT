@@ -40,7 +40,7 @@ const App: React.FC = () => {
 
   return (
     <BrowserRouter>
-      <div className="flex flex-col min-h-screen bg-[#f5f4f0]">
+      <div className="flex flex-col min-h-screen bg-[#f5f4f0] overflow-x-hidden">
         <Header />
         <main className="flex-1 flex flex-col">
           <Routes>

@@ -88,60 +88,60 @@ const APIDetailPage: React.FC = () => {
 
   return (
     <div className="flex-1">
-      <section className="pt-14 pb-10 border-b border-stone-200">
-        <div className="max-w-6xl mx-auto px-8">
-          <Link to="/apis" className="text-[12px] font-medium text-stone-400 hover:text-stone-700 transition-colors inline-flex items-center gap-1 mb-8">
+      <section className="pt-10 md:pt-14 pb-8 md:pb-10 border-b border-stone-200">
+        <div className="max-w-6xl mx-auto px-6 md:px-8">
+          <Link to="/apis" className="text-[11px] md:text-[12px] font-semibold text-stone-400 hover:text-stone-700 transition-colors inline-flex items-center gap-1 mb-6 md:mb-8">
             ← All APIs
           </Link>
-          <div className="flex items-start justify-between">
+          <div className="flex flex-col md:flex-row md:items-start justify-between gap-4">
             <div>
               <span className="text-[10px] font-semibold tracking-[0.12em] uppercase text-stone-400">{api.category}</span>
-              <h1 style={{ fontFamily: "'Doto', monospace" }} className="text-[48px] font-bold text-stone-900 mt-2 mb-4 leading-tight">
+              <h1 style={{ fontFamily: "'Doto', monospace" }} className="text-[32px] sm:text-[42px] md:text-[48px] font-bold text-stone-900 mt-2 mb-4 leading-tight">
                 {api.name.toUpperCase()}
               </h1>
-              <p className="text-[15px] text-stone-500 font-medium">{api.headline}</p>
+              <p className="text-[14px] md:text-[15px] text-stone-500 font-medium">{api.headline}</p>
             </div>
-            <span className={`text-[10px] font-semibold tracking-[0.08em] uppercase px-3 py-1.5 rounded-full border mt-2 ${api.status === 'Active' ? 'border-stone-200 text-stone-500 bg-stone-50' : 'border-amber-200 text-amber-600 bg-amber-50'}`}>
+            <span className={`text-[9px] md:text-[10px] font-semibold tracking-[0.08em] uppercase px-3 py-1.5 rounded-full border w-fit ${api.status === 'Active' ? 'border-stone-200 text-stone-500 bg-stone-50' : 'border-amber-200 text-amber-600 bg-amber-50'}`}>
               {api.status}
             </span>
           </div>
         </div>
       </section>
 
-      <section className="py-14">
-        <div className="max-w-6xl mx-auto px-8">
-          <div className="flex items-start gap-12">
+      <section className="py-10 md:py-14">
+        <div className="max-w-6xl mx-auto px-6 md:px-8">
+          <div className="flex flex-col lg:flex-row items-start gap-10 md:gap-12">
 
-            <div className="flex-1 flex flex-col gap-10">
+            <div className="flex-1 flex flex-col gap-8 md:gap-10 w-full">
               <div>
                 <p className="text-[10px] font-semibold tracking-[0.12em] uppercase text-stone-400 mb-4">About</p>
-                <p className="text-[14px] text-stone-500 leading-[1.85] max-w-lg">{api.description}</p>
+                <p className="text-[13px] md:text-[14px] text-stone-500 leading-[1.85] max-w-lg">{api.description}</p>
               </div>
 
-              <div className="bg-white border border-stone-200 rounded-2xl p-7">
+              <div className="bg-white border border-stone-200 rounded-2xl p-6 md:p-7">
                 <p className="text-[10px] font-semibold tracking-[0.12em] uppercase text-stone-400 mb-5">Live Insight Sample</p>
                 <div className="flex items-start gap-3">
                   <div className="w-1.5 h-1.5 rounded-full bg-stone-700 animate-pulse mt-1.5 shrink-0" />
-                  <p className="text-[14px] text-stone-700 leading-relaxed">{api.sampleInsight}</p>
+                  <p className="text-[13px] md:text-[14px] text-stone-700 leading-relaxed">{api.sampleInsight}</p>
                 </div>
               </div>
 
-              <div className="bg-white border border-stone-200 rounded-2xl p-7">
+              <div className="bg-white border border-stone-200 rounded-2xl p-6 md:p-7">
                 <p className="text-[10px] font-semibold tracking-[0.12em] uppercase text-stone-400 mb-4">Endpoint</p>
-                <code style={{ fontFamily: 'monospace' }} className="text-[13px] text-stone-700 bg-stone-50 border border-stone-200 px-4 py-2.5 rounded-xl block">
+                <code style={{ fontFamily: 'monospace' }} className="text-[12px] md:text-[13px] text-stone-700 bg-stone-50 border border-stone-200 px-4 py-2.5 rounded-xl block break-all">
                   {api.endpoint}
                 </code>
               </div>
             </div>
 
-            <div className="shrink-0 w-[280px]">
-              <div className="bg-white border border-stone-200 rounded-2xl p-7">
+            <div className="shrink-0 w-full lg:w-[280px]">
+              <div className="bg-white border border-stone-200 rounded-2xl p-6 md:p-7">
                 <p className="text-[10px] font-semibold tracking-[0.12em] uppercase text-stone-400 mb-5">Data Points</p>
                 <div className="flex flex-col gap-3">
                   {api.dataPoints.map((point) => (
                     <div key={point} className="flex items-center gap-3">
                       <div className="w-1 h-1 rounded-full bg-stone-400 shrink-0" />
-                      <span className="text-[13px] text-stone-600">{point}</span>
+                      <span className="text-[12px] md:text-[13px] text-stone-600">{point}</span>
                     </div>
                   ))}
                 </div>
