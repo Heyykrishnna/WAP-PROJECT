@@ -53,12 +53,12 @@ const Footer: React.FC = () => {
                 <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
               </svg>
             </a>
-            <a href="#" className="bg-[#0f0f0f] border border-white/5 hover:bg-[#1a1a1a] px-5 h-12 rounded-xl flex items-center justify-center text-[12px] text-stone-400 hover:text-white transition-colors">
+            {/* <a href="#" className="bg-[#0f0f0f] border border-white/5 hover:bg-[#1a1a1a] px-5 h-12 rounded-xl flex items-center justify-center text-[12px] text-stone-400 hover:text-white transition-colors">
               Privacy Policy
             </a>
             <a href="#" className="bg-[#0f0f0f] border border-white/5 hover:bg-[#1a1a1a] px-5 h-12 rounded-xl flex items-center justify-center text-[12px] text-stone-400 hover:text-white transition-colors">
               Terms of Service
-            </a>
+            </a> */}
           </div>
 
           <div className="bg-[#0f0f0f] border border-white/5 px-6 h-12 rounded-xl flex items-center text-[12px] text-stone-500 xl:flex-1 w-full xl:max-w-xl xl:mx-auto">
