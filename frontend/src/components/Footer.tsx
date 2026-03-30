@@ -61,7 +61,7 @@ const Footer: React.FC = () => {
             </a> */}
           </div>
 
-          <div className="bg-[#0f0f0f] border border-white/5 px-6 h-12 rounded-xl flex items-center text-[12px] text-stone-500 xl:flex-1 w-full xl:max-w-xl xl:mx-auto">
+          <div className="bg-[#0f0f0f] border border-white/5 px-6 h-12 rounded-xl flex items-center justify-center text-[12px] text-stone-500 xl:flex-1 w-full xl:max-w-xl xl:mx-auto">
             © 2026 Life OS. All Rights Reserved.
           </div>
 
