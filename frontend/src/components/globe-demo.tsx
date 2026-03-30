@@ -392,8 +392,8 @@ export default function GlobeDemo() {
   ];
 
   return (
-    <div className="flex flex-row items-center justify-center py-20 h-screen md:h-auto bg-[#f5f4f0] relative w-full">
-      <div className="max-w-7xl mx-auto w-full relative overflow-hidden h-full md:h-160 px-4">
+    <div className="flex flex-col items-center justify-start pt-16 pb-0 md:py-20 min-h-[500px] sm:min-h-[600px] md:min-h-0 md:h-auto bg-[#f5f4f0] relative w-full overflow-hidden">
+      <div className="max-w-7xl mx-auto w-full relative h-[450px] sm:h-[550px] md:h-[640px] px-4 flex flex-col justify-start">
         <motion.div
           initial={{
             opacity: 0,
@@ -406,7 +406,7 @@ export default function GlobeDemo() {
           transition={{
             duration: 1,
           }}
-          className="div relative z-20"
+          className="relative z-20 mt-4 md:mt-0"
         >
           <h2 
             style={{ fontFamily: "'Doto', monospace" }}
@@ -414,13 +414,15 @@ export default function GlobeDemo() {
           >
             REAL-TIME GLOBAL CONTEXT
           </h2>
-          <p className="text-center text-[14px] leading-[1.8] text-stone-500 max-w-lg mt-4 mx-auto">
+          <p className="text-center text-[14px] leading-[1.8] text-stone-600 max-w-lg mt-4 mx-auto font-medium">
             Life OS continuously aggregates data from worldwide sources—weather patterns, global events, and regional trends—to provide you with unparalleled contextual awareness.
           </p>
         </motion.div>
+        
         <div className="absolute w-full bottom-0 inset-x-0 h-40 bg-linear-to-b pointer-events-none select-none from-transparent to-[#f5f4f0] z-40" />
-        <div className="absolute w-full -bottom-20 h-72 md:h-full z-10">
-          <Suspense fallback={<div className="flex items-center justify-center h-full w-full text-stone-400">Loading Globe...</div>}>
+        
+        <div className="absolute w-[150%] -left-[25%] md:w-full md:left-0 -bottom-20 md:-bottom-24 h-[400px] sm:h-[500px] md:h-full z-10 flex items-center justify-center">
+          <Suspense fallback={<div className="flex items-center justify-center h-full w-full text-stone-400 font-medium tracking-wide">Loading Globe...</div>}>
             <World data={sampleArcs} globeConfig={globeConfig} />
           </Suspense>
         </div>
