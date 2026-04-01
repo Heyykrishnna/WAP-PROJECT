@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const apis = [
@@ -13,6 +13,43 @@ const apis = [
 ];
 
 const APIsPage: React.FC = () => {
+  const [searchQuery, setSearchQuery] = useState('');
+  const [selectedStatus, setSelectedStatus] = useState('All');
+  const [selectedCategory, setSelectedCategory] = useState('All');
+  const [sortBy, setSortBy] = useState('name-asc');
+
+  const categories = useMemo(
+    () => ['All', ...Array.from(new Set(apis.map((api) => api.category)))],
+    []
+  );
+
+  const visibleApis = useMemo(() => {
+    const normalizedQuery = searchQuery.trim().toLowerCase();
+
+    const filtered = apis.filter((api) => {
+      const matchesSearch =
+        normalizedQuery.length === 0 ||
+        api.name.toLowerCase().includes(normalizedQuery) ||
+        api.desc.toLowerCase().includes(normalizedQuery) ||
+        api.category.toLowerCase().includes(normalizedQuery);
+
+      const matchesStatus =
+        selectedStatus === 'All' || api.status === selectedStatus;
+
+      const matchesCategory =
+        selectedCategory === 'All' || api.category === selectedCategory;
+
+      return matchesSearch && matchesStatus && matchesCategory;
+    });
+
+    return [...filtered].sort((a, b) => {
+      if (sortBy === 'name-desc') return b.name.localeCompare(a.name);
+      if (sortBy === 'status') return a.status.localeCompare(b.status);
+      if (sortBy === 'category') return a.category.localeCompare(b.category);
+      return a.name.localeCompare(b.name);
+    });
+  }, [searchQuery, selectedStatus, selectedCategory, sortBy]);
+
   return (
     <div className="flex-1">
       <section className="pt-10 md:pt-16 pb-8 md:pb-10 border-b border-stone-200">
@@ -29,8 +66,53 @@ const APIsPage: React.FC = () => {
 
       <section className="py-10 md:py-14">
         <div className="max-w-6xl mx-auto px-6 md:px-8">
+          <div className="bg-white border border-stone-200 rounded-2xl p-4 md:p-5 mb-6 md:mb-8">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-3">
+              <input
+                type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                placeholder="Search by name, category, or description"
+                className="w-full border border-stone-200 rounded-xl px-3 py-2.5 text-[13px] text-stone-700 placeholder:text-stone-400 focus:outline-none focus:ring-2 focus:ring-stone-200"
+              />
+
+              <select
+                value={selectedStatus}
+                onChange={(e) => setSelectedStatus(e.target.value)}
+                className="w-full border border-stone-200 rounded-xl px-3 py-2.5 text-[13px] text-stone-700 bg-white focus:outline-none focus:ring-2 focus:ring-stone-200"
+              >
+                <option value="All">All Status</option>
+                <option value="Active">Active</option>
+                <option value="Beta">Beta</option>
+              </select>
+
+              <select
+                value={selectedCategory}
+                onChange={(e) => setSelectedCategory(e.target.value)}
+                className="w-full border border-stone-200 rounded-xl px-3 py-2.5 text-[13px] text-stone-700 bg-white focus:outline-none focus:ring-2 focus:ring-stone-200"
+              >
+                {categories.map((category) => (
+                  <option key={category} value={category}>
+                    {category === 'All' ? 'All Categories' : category}
+                  </option>
+                ))}
+              </select>
+
+              <select
+                value={sortBy}
+                onChange={(e) => setSortBy(e.target.value)}
+                className="w-full border border-stone-200 rounded-xl px-3 py-2.5 text-[13px] text-stone-700 bg-white focus:outline-none focus:ring-2 focus:ring-stone-200"
+              >
+                <option value="name-asc">Sort: Name A-Z</option>
+                <option value="name-desc">Sort: Name Z-A</option>
+                <option value="status">Sort: Status</option>
+                <option value="category">Sort: Category</option>
+              </select>
+            </div>
+          </div>
+
           <div className="flex flex-col gap-3 md:gap-4">
-            {apis.map((api, i) => (
+            {visibleApis.map((api, i) => (
               <Link
                 key={api.slug}
                 to={`/apis/${api.slug}`}
@@ -54,6 +136,12 @@ const APIsPage: React.FC = () => {
                 </div>
               </Link>
             ))}
+
+            {visibleApis.length === 0 && (
+              <div className="bg-white border border-stone-200 rounded-2xl p-8 text-center">
+                <p className="text-[13px] text-stone-500">No APIs found for the current filters.</p>
+              </div>
+            )}
           </div>
         </div>
       </section>
