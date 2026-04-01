@@ -4,7 +4,7 @@ import Lenis from 'lenis';
 import gsap from 'gsap';
 import Header from './components/Header';
 import Hero from './components/Hero';
-import APIModules from './components/APIModules';
+// import APIModules from './components/APIModules';
 import Footer from './components/Footer';
 import APIsPage from './pages/APIsPage';
 import APIDetailPage from './pages/APIDetailPage';
@@ -17,7 +17,7 @@ const LandingLayout: React.FC = () => {
   return (
     <>
       <Hero />
-      <APIModules />
+      {/* <APIModules /> */}
       <GlobeDemo />
     </>
   );
